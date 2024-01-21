@@ -1,4 +1,4 @@
-<template></template>
+<template>Coach Registration</template>
 
 <script>
 export default {

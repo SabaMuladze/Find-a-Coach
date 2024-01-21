@@ -1,11 +1,9 @@
-<template></template>
+<template>Requests</template>
 
 <script>
 export default {
   data() {
-    return {
-      message: "World",
-    };
+    return {};
   },
 };
 </script>

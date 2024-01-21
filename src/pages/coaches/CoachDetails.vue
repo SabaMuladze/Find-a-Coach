@@ -1,18 +1,11 @@
 <template>
-  <!-- Your HTML template code goes here -->
-  <div>
-    <h1>Hello, {{ message }}</h1>
-  </div>
+  Details for Coach
+  <router-view></router-view>
+  <router-link to="/coaches/c1/contact">Contact</router-link>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      message: "World",
-    };
-  },
-};
+export default {};
 </script>
 
 <style>

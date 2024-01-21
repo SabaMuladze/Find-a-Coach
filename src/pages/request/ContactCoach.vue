@@ -1,13 +1,7 @@
-<template></template>
+<template>Contact</template>
 
 <script>
-export default {
-  data() {
-    return {
-      message: "World",
-    };
-  },
-};
+export default {};
 </script>
 
 <style>
