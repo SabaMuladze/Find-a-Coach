@@ -6,7 +6,7 @@
     </div>
     <div class="form-controll">
       <label for="lastname">Last Name</label>
-      <input type="text" id="larstname" v-model.trim="lastName" />
+      <input type="text" id="lastname" v-model.trim="lastName" />
     </div>
     <div class="form-controll">
       <label for="description">Description</label>
@@ -42,6 +42,7 @@
 
 <script>
 export default {
+  emits: ["save-data"],
   data() {
     return {
       firstName: "",
@@ -54,13 +55,13 @@ export default {
   methods: {
     submitForm() {
       const formData = {
-        firstname: this.firstName,
-        lastname: this.lastName,
+        firstName: this.firstName,
+        lastName: this.lastName,
         description: this.description,
         rate: this.rate,
         areas: this.areas,
       };
-      console.log(formData);
+      this.$emit("save-data", formData);
     },
   },
 };
