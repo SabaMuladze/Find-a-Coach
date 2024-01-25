@@ -5,7 +5,7 @@
       <input type="email" v-model.trim="email" />
     </div>
     <div class="form-controll">
-      <label for="message">Meassage</label>
+      <label for="message">Message</label>
       <textarea id="message" cols="5" v-model.trim="message"></textarea>
     </div>
     <p class="errors" v-if="!formIsValid">
