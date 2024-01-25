@@ -9,7 +9,7 @@
       <textarea id="message" cols="5" v-model.trim="message"></textarea>
     </div>
     <p class="errors" v-if="!formIsValid">
-      Please enter valid email and non-empty message .
+      Please enter valid email and non-empty message.
     </p>
     <div class="actions">
       <base-button>Send Message</base-button>
@@ -32,11 +32,18 @@ export default {
 
       if (
         this.email === "" ||
-        !this.email.includes("@" || this.message === "")
+        !this.email.includes("@") ||
+        this.message === ""
       ) {
         this.formIsValid = false;
         return;
       }
+      this.$store.dispatch("requests/contactCoach", {
+        email: this.email,
+        message: this.message,
+        coachId: this.$route.params.id,
+      });
+      this.$router.replace("/coaches");
     },
   },
 };
