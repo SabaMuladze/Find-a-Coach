@@ -135,7 +135,6 @@ export default {
         this.areas.isVal = false;
         this.formIsValid = false;
       }
-      console.log(this.areas.val);
     },
     submitForm() {
       this.validateForm();

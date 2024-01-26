@@ -24,6 +24,7 @@ export default {
       email: "",
       message: "",
       formIsValid: true,
+      userId: "",
     };
   },
   methods: {
