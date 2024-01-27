@@ -1,10 +1,16 @@
 <template>
+  <base-dialog :show="!!error" title="An error occurred!" @close="handleError">
+    <p>{{ error }}</p>
+  </base-dialog>
   <section>
     <base-card>
       <header>
         <h2>Requests Recieved</h2>
       </header>
-      <ul v-if="hasRequests">
+
+      <base-spinner v-if="isLoading"></base-spinner>
+
+      <ul v-else-if="hasRequests && !isLoading">
         <request-itemm
           v-for="req in requests"
           :key="req.id"
@@ -12,7 +18,7 @@
           :message="req.message"
         ></request-itemm>
       </ul>
-      <h3 v-if="!hasRequests">you have not any requests yet</h3>
+      <h3 v-else>you have not any requests yet</h3>
     </base-card>
   </section>
 </template>
@@ -21,7 +27,10 @@
 import RequestItemm from "../../components/requests/RequestItemm.vue";
 export default {
   data() {
-    return {};
+    return {
+      isLoading: false,
+      error: null,
+    };
   },
   components: {
     RequestItemm,
@@ -34,8 +43,26 @@ export default {
       return this.$store.getters["requests/hasRequests"];
     },
   },
+  created() {
+    this.loadRequests();
+  },
+  methods: {
+    async loadRequests() {
+      this.isLoading = true;
+      try {
+        await this.$store.dispatch("requests/fetchRequests");
+      } catch (error) {
+        this.error = error.message || "Something failed!";
+      }
+      this.isLoading = false;
+    },
+    handleError() {
+      this.error = null;
+    },
+  },
   mounted() {
     console.log(this.hasRequests);
+    console.log(this.isLoading);
   },
 };
 </script>
